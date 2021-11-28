@@ -24,8 +24,12 @@ void List::push_front(int data)
 void List::push_back(int data)
 {
 	Node *last = new Node(data);
+	if (this->head == nullptr)
+	{
+		this->head = last;
+		return ;
+	}
 	Node *res = this->head;
-
 	while (res->next != nullptr)
 		res = res->next;
 	res->next = last;
@@ -80,3 +84,47 @@ int List::size()
 	return (i);
 }
 
+void List::pop_front()
+{
+
+	Node *res = this->head;
+	this->head = res->next;
+	delete res;
+}
+
+void List::pop_back()
+{
+	Node *res = this->head;
+	if (this->head->next == nullptr)
+	{
+		delete res;
+		this->head = nullptr;
+		return ;
+	}
+	while (res->next->next != nullptr)
+		res = res->next;
+	delete res->next;
+	res->next = nullptr;
+}
+
+void List::remove(int index)
+{
+	if (index == 0)
+	{
+		this->pop_front();
+		return ;
+	}
+	Node *res = this->head;
+	Node *tmp;
+	for (int i = 0; i < index - 1; i++)
+		res = res->next;
+	tmp = res->next->next;
+	delete res->next;
+	res->next = tmp;
+}
+
+void List::clear()
+{
+	while (this->head != nullptr)
+		this->pop_front();
+}
