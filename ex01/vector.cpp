@@ -1,23 +1,23 @@
 #include <vector> // for std::vector
+#include "sorting.hpp"
 #include <iostream> // for cin & cout
+
+void print_array(std::vector<int> array)
+{
+	for (int i = 0; i < array.size(); i++)
+		std::cout << array[i] << ' ';
+	std::cout << '\n';
+}
 
 int main(void)
 {
-	std::vector<std::string> array = {"i", "know", "you", "i walked", "with", "you"};
-	// array.push_back(1);
-	// array.push_back(2);
-	// array.push_back(3);
-	// array.push_back(4);
-	// array.push_back(5);
-	for (int i = 0; i < array.size(); i++)
-		std::cout << array[i] << ' ';
-	array[4] = "once";
-	std::cout << '\n';
-	for (int i = 0; i < array.size(); i++)
-		std::cout << array[i] << ' ';
-	// std::cout << "enter a number: ";
-	// int a = 0;
-	// std::cin >> a;
-	// std::cout << "you entered " << a;
+	std::vector<int> array = {3, 6, 2, 8, 2, 7, 3, 7};
+
+	print_array(array);
+
+	selection_sort(&array);
+
+	print_array(array);
+
 	return (0);
 }
