@@ -78,6 +78,8 @@ void merge(std::vector<int> *arr, int left, int right, int middle)
 		}
 	}
 
+	i = left;
+	j = middle + 1;
 	while (i <= middle)
 	{
 		temp_arr[k] = (*arr)[i]; // copying all elements from left subarray to temp_arr
@@ -121,7 +123,7 @@ void mergeSort(std::vector<int> *arr, int left, int right)
 
 int main()
 {
-	std::vector<int> arr = {1, 5, 3, 7, 2, 3, 8};
+	std::vector<int> arr = {1, 5, 3, 7, 2, 3, 8, 10};
 	// merge(&arr, 0, 8, 3);
 	mergeSort(&arr, 0, arr.size() - 1);
 	for (unsigned long i = 0; i < arr.size(); i++)
