@@ -8,6 +8,6 @@ void selection_sort(std::vector<int> *array);
 void selection_sort(std::vector<int> *array, int start, int end);
 void swap(int *a, int *b);
 void shell_sort(std::vector<int> *array);
-void inclusion_sort(std::vector<int> *array);
+void insertion_sort(std::vector<int> *array);
 
 #endif // SORTING_HPP
