@@ -20,6 +20,19 @@ void selection_sort(std::vector<int> *array)
 	}
 }
 
+void inclusion_sort(std::vector<int> *array)
+{
+	for (unsigned long i = 1; i < array->size() - 1; i++)
+	{
+		int j = i - 1;
+		while (j >= 0 && (*array)[j] > (*array)[j + 1])
+		{
+			swap(&(*array)[j], &(*array)[j + 1]);
+			j--;
+		}
+	}
+}
+
 void shell_sort(std::vector<int> *array)
 {
 	for (int gap = array->size() / 2; gap >= 1; gap /= 2)

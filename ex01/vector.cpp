@@ -23,7 +23,13 @@ int main(void)
 
 	shell_sort(&array2);
 
-	print_array(array);
+	print_array(array2);
+
+	std::vector<int> array3 = {23, 22, 343, 4, 0, -56, -23, 0, 5, 600};
+
+	shell_sort(&array3);
+
+	print_array(array3);
 
 	return (0);
 }
