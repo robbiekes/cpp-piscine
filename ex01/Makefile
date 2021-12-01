@@ -6,7 +6,7 @@ STDFLAG		= -std=c++11
 
 NAME		= cpp_tasks
 
-SRC			= vector.cpp
+SRC			= sorting.cpp
 OBJDIR		= ./obj_files/
 OBJ			= $(addprefix $(OBJDIR), $(SRC:.cpp=.o))
 DFILES		= $(OBJ:.o=.d)
