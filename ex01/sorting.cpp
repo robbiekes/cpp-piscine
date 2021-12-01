@@ -22,5 +22,18 @@ void selection_sort(std::vector<int> *array)
 
 void shell_sort(std::vector<int> *array)
 {
-
+	for (int gap = array->size() / 2; gap >= 1; gap /= 2)
+	{
+		for (int j = gap; j <= array->size(); j++)
+		{
+			for (int i = j - gap; i >= 0; i -= gap)
+			{
+				if ((*array)[i + gap] < (*array)[i])
+					swap(&(*array)[i + gap], &(*array)[i]);
+				else
+					break;
+			}
+		}
+	}
 }
+	

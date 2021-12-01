@@ -19,5 +19,11 @@ int main(void)
 
 	print_array(array);
 
+	std::vector<int> array2 = {24, 100, 54, 53, 22, 0, -5, 24, 500};
+
+	shell_sort(&array2);
+
+	print_array(array);
+
 	return (0);
 }
