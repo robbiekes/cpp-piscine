@@ -51,79 +51,56 @@ void swap(int *a, int *b)
 // }
 
 
-void merge(std::vector<int> *arr, int left, int right, int middle)
+void	merge(std::vector<int> *arr, int left, int mid, int right)
 {
-	int i = left; // starting index for left subarray
-	int j = middle + 1; // starting index for right subarray
-	int k = 0; // starting index for temporary array;
-	
-	DEBUG(i);
-	DEBUG(j);
+	int it1 = 0;
+	int it2 = 0;
 
-	std::vector<int> temp_arr(arr->size(), 0);
+	std::vector<int> new_arr(right - left, 0);
 
-	while (i <= middle || j <= right)
+	while (left + it1 < mid && mid + it2 < right)
 	{
-		if (j == right + 1 || ( i != middle + 1 && (*arr)[i] < (*arr)[j]))
+		if ((*arr)[left + it1] < (*arr)[mid + it2])
 		{
-			temp_arr[k] = (*arr)[i];
-			i++;
-			k++;
+			new_arr[it1 + it2] = (*arr)[left + it1];
+			it1++;
 		}
 		else
 		{
-			temp_arr[k] = (*arr)[j];
-			j++;
-			k++;
+			new_arr[it1 + it2] = (*arr)[mid + it2];
+			it2++;
 		}
 	}
-
-	i = left;
-	j = middle + 1;
-	while (i <= middle)
+	while (left + it1 < mid)
 	{
-		temp_arr[k] = (*arr)[i]; // copying all elements from left subarray to temp_arr
-		k++;
-		i++;
+		new_arr[it1 + it2] = (*arr)[left + it1];
+		it1++;
 	}
-	while (j <= right)
+	while (mid + it2 < right)
 	{
-		temp_arr[k] = (*arr)[j]; // copying all elements from right subarray to temp_arr
-		j++;
-		k++;
+		new_arr[it1 + it2] = (*arr)[mid + it2];
+		it2++;
 	}
-	for (int s = left; s <= right; s++)
-		(*arr)[s] = temp_arr[s];
+	//std::cout << '[' << it2 << ']' << '\n';
+	for (int k = 0; k < it1 + it2; k++)
+		(*arr)[left + k] = new_arr[k];
 }
 
-void mergeSort(std::vector<int> *arr, int left, int right)
+void	mergeSort(std::vector<int> *arr, int left, int right) // left, right - индексы
 {
-	// exit from recursion
-	if (right - left < 3 && (*arr)[left] > (*arr)[right])
-		swap(&(*arr)[left], &(*arr)[right]);
-	if (right - left == 2)
-	{
-		if ((*arr)[left + 1] > (*arr)[right])
-			swap(&(*arr)[left + 1], &(*arr)[right]);
-		if ((*arr)[left] > (*arr)[right - 1])
-			swap(&(*arr)[left], &(*arr)[right - 1]);
-	}
-	if (right)
-	if (right - left < 3)
-		return;
+	if (left + 1 >= right)
+		return ;
+	
+	int mid = (left + right) / 2;
 
-	int middle = (left + right) / 2;
-
-	DEBUG(middle);
-
-	mergeSort(arr, left, middle);
-	mergeSort(arr, middle + 1, right);
-	merge(arr, left, right, middle);
+	mergeSort(arr, left, mid);
+	mergeSort(arr, mid, right);
+	merge(arr, left, mid, right);
 }
 
 int main()
 {
-	std::vector<int> arr = {1, 5, 3, 7, 2, 3, 8, 10};
+	std::vector<int> arr = {1, 3, 5, 7, 0, 2, 8, 10};
 	// merge(&arr, 0, 8, 3);
 	mergeSort(&arr, 0, arr.size() - 1);
 	for (unsigned long i = 0; i < arr.size(); i++)
