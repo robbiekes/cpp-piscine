@@ -1,26 +1,41 @@
 #include <iostream>
 #include <vector>
 
-void	display_num(int num)
+void	display_num(int *numbers)
 {
-	int output = 0;
+	int	count;
 	int i = 0;
-	while (i < num + 1)
+	int index = 0;
+	int output = 0;
+
+	while (numbers[i])
 	{
-	//	std::cout << output << '\n';
-		if ((output % 10) != 3 && (output % 3 != 0))
+		count = 0;
+		index = 0;
+		while (index < numbers[i])
 		{
-			std::cout << '[' << output << ']' << '\n';
-			i++;
+			if ((count % 10) != 3 && (count % 3 != 0))
+			{
+				output = count;
+				index++;
+			}
+			count++;
 		}
-		output++;
+		std::cout << output << '\n';
+		i++;
 	}
-	std::cout << i - 1 << " - " << output - 1 << '\n';
 }
 
 int main(void)
 {
-	int input = 0;
-	std::cin >> input;
-	display_num(input);
+	int i = 0;
+	int data_amount = 0;
+	int numbers[101] = {0};
+	std::cin >> data_amount;
+	while (i < data_amount)
+	{
+		std::cin >> numbers[i];
+		i++;
+	}
+	display_num(numbers);
 }
