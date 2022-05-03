@@ -21,16 +21,16 @@ struct String
 			str[i] = a.str[i];
 		str[size + 1] = '\0';
 	}
-	
+
 	~String()
 	{
 		std::cout << "distructor" << std::endl;
 		delete [] str;
 	}
 
-	// private:
-		size_t	size;
-		char	*str;
+// private:
+	size_t	size;
+	char	*str;
 };
 
 int main()

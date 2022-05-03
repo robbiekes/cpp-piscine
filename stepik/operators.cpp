@@ -1,4 +1,5 @@
 #include <iostream>
+
 struct Rational
 {
     Rational(int numerator = 0, int denominator = 1) : numerator_(numerator), denominator_(denominator) {};
@@ -121,8 +122,6 @@ struct Rational
 	friend bool operator>(int left, const Rational &right)
 	{
 		Rational left_(left);
-		//std::cout << left_.numerator_ << left_.denominator_ << "\n";
-		//std::cout << right.numerator_ << right.denominator_ << "\n";
 		return (right < left_);
 	}
 	friend bool operator>=(const Rational &left, const Rational &right)
@@ -153,6 +152,12 @@ struct Rational
 		Rational right_(right);
 		return !(right_ < left);
 	}
+
+	operator double()
+	{
+		this->to_double();
+		return *this;
+	}
 private:
     int numerator_;
     unsigned denominator_;
@@ -163,10 +168,5 @@ int main()
 	Rational t(2, 3);
 	Rational t2(3, 5);
 
-	if (t <= t2)
-	{
-		std::cout << "YES";
-	}
-	else
-		std::cout << "NO";
+	std::cout << t2-t << "\n";
 }
